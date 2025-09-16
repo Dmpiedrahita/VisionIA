@@ -36,9 +36,15 @@ print(df.shape)
 x=df.iloc[:,:-1]
 y=df.iloc[:,-1]
 
-x_train,x_test,y_train,y_test=train_test_split(x, y, test_size=0.20, random_state=77, stratify=y)
+x_train,x_test,y_train,y_test=train_test_split(x, y, test_size=0.33, random_state=42, stratify=y)
 
-model=svm.SVC()
+model = svm.SVC(
+    kernel="rbf",     
+    C=10,             
+    gamma=0.001,      
+    probability=True,  
+    random_state=42
+)
 
 model.fit(x_train, y_train)
 

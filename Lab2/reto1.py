@@ -17,16 +17,16 @@ le = LabelEncoder()
 y = le.fit_transform(iris["Species"])
 
 X_train, X_test, y_train, y_test = train_test_split(
-    X, y, test_size=0.33, random_state=10, stratify=y
+    X, y, test_size=0.33, random_state=42, stratify=y
 )
 
 models = {
     "Logistic Regression": Pipeline([
         ("scaler", StandardScaler()),
-        ("clf", LogisticRegression(max_iter=100, random_state=42))
+        ("clf", LogisticRegression(max_iter=10, random_state=4))
     ]),
-    "Decision Tree": DecisionTreeClassifier(random_state=42, max_depth=1, criterion="entropy"),
-    "Random Forest": RandomForestClassifier(random_state=42, n_estimators=20, max_depth=4)
+    "Decision Tree": DecisionTreeClassifier(random_state=42, max_depth=4),
+    "Random Forest": RandomForestClassifier(random_state=42, n_estimators=10, max_depth=4)
 }
 
 fig, axes = plt.subplots(1, len(models), figsize=(15, 4))
